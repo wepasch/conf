@@ -18,10 +18,10 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code":  "escape"
+                                        "key_code": "escape"
                                     }
                                 ],
-                                "Type": "basic"
+                                "type": "basic"
                             }
                         ]
                     },
