@@ -1,6 +1,6 @@
 cask 'font-meslo-lg-nerd-font'
 cask 'ghostty'
 brew 'tmux'
-brew fzf
-brew eza
-brew bat
+brew 'fzf'
+brew 'eza'
+brew 'bat'
