@@ -1,5 +1,6 @@
 cask 'font-meslo-lg-nerd-font'
 cask 'ghostty'
 brew 'tmux'
-tap 'nikitabobko/tap'
-cask 'nikitabobko/tap/aerospace'
+brew fzf
+brew eza
+brew bat
