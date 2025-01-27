@@ -6,3 +6,7 @@ theme = catppuccin-mocha
 font-family = MesloLGS Nerd Font Mono
 font-size = 18
 
+adjust-cell-height=35%
+macos-titlebar-style=transparent
+window-padding-balance=true
+window-save-state=always
