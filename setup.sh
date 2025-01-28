@@ -28,8 +28,3 @@ add_if_absent_into () {
     echo "Line already exists in $file."
   fi
 }
-
-
-
-
-
