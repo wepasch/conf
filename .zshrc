@@ -1,5 +1,5 @@
 # add homebrew to path
-'eval "$(/opt/homebrew/bin/brew shellenv)"'
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ---- FZF -----
 # Set up fzf key bindings and fuzzy completion
