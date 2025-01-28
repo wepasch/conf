@@ -17,11 +17,11 @@ export FZF_DEFAULT_OPTS=" \
 --multi"
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
-_fzf_compgen_path() {
+function _fzf_compgen_path() {
   fd --hidden --exclude .git . "$1"
 }
 
 # Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
+function _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
