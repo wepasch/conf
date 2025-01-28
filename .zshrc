@@ -1,4 +1,4 @@
-# add homebrew to path
+# Add Homebrew to PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ---- FZF -----
@@ -27,4 +27,3 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
-
