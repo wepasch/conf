@@ -28,3 +28,4 @@ add_if_absent_into () {
 
 
 install_homebrew
+echo eo
