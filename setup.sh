@@ -1,1 +1,0 @@
-/Users/armin/setup.sh
