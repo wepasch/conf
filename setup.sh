@@ -13,7 +13,7 @@ install_homebrew () {
     echo "Homebrew is already installed."
   fi
   
-  add_if_absent_into 'eval $("/opt/homebrew/bin/brew" shellenv)' $PATH_ZSHRC
+  add_if_absent_into 'eval $(eval "$(/opt/homebrew/bin/brew shellenv)")' $PATH_ZSHRC
   source $PATH_ZSHRC
 }
 
