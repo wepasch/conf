@@ -1,6 +1,6 @@
 #! /bin/zsh
 
-CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf" "/.zshrc")
+CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf")
 REPO_URL="git@github.com:wepasch/configs.git"
 DIR_CONFS=$HOME/configs
 DIR_CONF=$HOME/.config
@@ -27,10 +27,9 @@ add_if_absent_into () {
 }
 
 create_symlink () {
-  src_path="$1/$2"
-  dst_dir="$3"
-  dst_path="$3/$4"
-
+  src_path="$DIR_CONFS/$1/$2"
+  dst_dir="$DIR_CONF/$1"
+  dst_path="$dst_dir/$2"
   if [ ! -f "$src_path" ]; then
     echo "ERROR: No file at $src_path"
     return 1
@@ -45,7 +44,7 @@ create_symlinks () {
   for conf in "${CONFS[@]}"; do
     _dir="${conf%%/*}"
     _path="${conf#*/}"
-    create_symlink "$DIR_CONFS/$_dir" "$_path" "$DIR_CONF/$dir" "$_path"
+    create_symlink "$_dir" "$_path"   
   done
 }
 
@@ -57,6 +56,6 @@ get_configs () {
   fi
 }
 
-install_homebrew
 get_configs
 create_symlinks
+#install_homebrew
