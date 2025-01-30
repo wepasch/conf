@@ -8,6 +8,23 @@ DIR_CONF=$HOME/.config
 PATH_ZSHRC=$HOME/.zshrc
 DIR_TPM="$DIR_CONF/tmux/plugins/tpm"
 
+opt_hb=false
+opt_hb_i=false
+while getopts "hi" opt; do
+  case $opt in
+    h)
+      opt_hb=true
+      ;;
+    i)
+      opt_hb_i=true
+      ;;
+    *)
+      echo "Usage: $0 [-h] [-i]"
+      exit 1
+      ;;
+  esac
+done
+
 install_homebrew () {
   if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -79,7 +96,23 @@ install_to () {
   fi 
 }
 
+install_brews () {
+  path_bf="$DIR_CONFS/homebrew/brewfile"
+  if [ ! -f "$path_bf" ];then
+    echo ERROR: no brewfile at $path_bf
+    exit 1
+  fi
+  brew bundle --file="$path_bf"
+} 
+
+if [ "$opt_hb" = true ];then
+  install_homebrew
+  exit 0
+fi
+if [ "$opt_hb_i" = true ];then
+  install_brews
+  exit 0
+fi
 install_to $URL_REPO $DIR_CONFS
 install_to $URL_TPM $DIR_TPM 
 create_symlinks
-#install_homebrew
