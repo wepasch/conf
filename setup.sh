@@ -1,10 +1,12 @@
 #! /bin/zsh
 
 CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf")
-REPO_URL="git@github.com:wepasch/configs.git"
+URL_REPO="git@github.com:wepasch/configs.git"
+URL_TPM="https://github.com/tmux-plugins/tpm"
 DIR_CONFS=$HOME/configs
 DIR_CONF=$HOME/.config
 PATH_ZSHRC=$HOME/.zshrc
+DIR_TPM="$DIR_CONF/tmux/plugins/tpm"
 
 install_homebrew () {
   if ! command -v brew &> /dev/null; then
@@ -46,6 +48,16 @@ create_symlinks () {
     _path="${conf#*/}"
     create_symlink "$_dir" "$_path"   
   done
+  src_zshrc="$DIR_CONFS/.zshrc"
+  if [ -f "$src_zshrc" ]; then
+    if [ ! -f "$PATH_ZSHRC" ]; then
+      ln -s "$src_zshrc" "$PATH_ZSHRC"
+      source $PATH_ZSHRC
+    fi
+  else
+    echo ERROR: Found no zshrc at $src_zshrc.
+    return 1
+  fi
 }
 
 get_configs () {
@@ -56,6 +68,18 @@ get_configs () {
   fi
 }
 
-get_configs
+install_to () {
+  url_repo=$1
+  dir_dst=$2
+  if [ -d "$dir_dst/.git" ]; then
+    git -C "$dir_dst" pull "$url_repo"
+  else
+    mkdir -p $dir_dst
+    git clone "$url_repo" "$dir_dst"
+  fi 
+}
+
+install_to $URL_REPO $DIR_CONFS
+install_to $URL_TPM $DIR_TPM 
 create_symlinks
 #install_homebrew
