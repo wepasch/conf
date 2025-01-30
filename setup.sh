@@ -44,7 +44,9 @@ create_symlink () {
 
 create_symlinks () {
 for conf in "${CONFS[@]}"; do
-  create_symlink $DIR_CONFS/"${conf%%/*}" "${conf#*/}" $DIR_CONF/"${conf%%/*}" "${conf#*/}" 
+  local dir="${conf%%/*}"
+  local path="${conf#*/}"
+  create_symlink $DIR_CONFS/$dir $path $DIR_CONF/$dir $path 
 done
   
 }
