@@ -37,6 +37,7 @@ create_symlink () {
   fi
   if [ ! -d "$dst_dir" ]; then
     mkdir -p $dst_dir
+  fi
   if [ ! -f "$dst_path" ]; then
     ln -s $src_path $dst_path
   fi
