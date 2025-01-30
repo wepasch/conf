@@ -1,7 +1,8 @@
 #! /bin/zsh
 
-DIR_CONF=$HOME/configs
-DIRD_CONF=$HOME/.config
+CONFS==("ghostty" "banana" "cherry")
+DIR_CONFS=$HOME/configs
+DIR_CONF=$HOME/.config
 PATH_ZSHRC=$HOME/.zshrc
 
 install_homebrew () {
@@ -16,8 +17,8 @@ install_homebrew () {
 }
 
 add_if_absent_into () {
-  local line="$1"
-  local file="$2"
+  local line = "$1"
+  local file = "$2"
   if ! grep -qF "$line" "$file"; then
     echo "Adding the following line into $file: $line"
     echo -e "\n$line" >> "$file"
@@ -26,5 +27,33 @@ add_if_absent_into () {
   fi
 }
 
+create_symlink () {
+  local src_path = $DIR_CONFS/$1/$2
+  if [ -n $3 ]; then
+    local src_dir = $DIR_CONF/$3
+    local dst_path = $dst_dir/$4
+  else
+    local src_dir = $DIR_CONF/$1
+    local dst_path = $dst_dir/$2
+  fi  
+}
+
+create_symlinks () {
+  
+}
 
 install_homebrew
+
+
+
+
+
+
+
+
+
+
+
+
+
+
