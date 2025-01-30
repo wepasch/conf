@@ -27,16 +27,15 @@ add_if_absent_into () {
 }
 
 create_symlink () {
-  local src_path="$1/$2"
-  local dst_dir="$3"
-  local dst_path="$4"
+  src_path="$1/$2"
+  dst_dir="$3"
+  dst_path="$3/$4"
+
   if [ ! -f "$src_path" ]; then
     echo "ERROR: No file at $src_path"
     return 1
   fi
-  if [ ! -d "$dst_dir" ]; then
-    mkdir -p "$dst_dir"
-  fi
+  mkdir -p "$dst_dir"
   if [ ! -f "$dst_path" ]; then
     ln -s "$src_path" "$dst_path"
   fi
@@ -44,8 +43,8 @@ create_symlink () {
 
 create_symlinks () {
   for conf in "${CONFS[@]}"; do
-    local dir="${conf%%/*}"
-    local path="${conf#*/}"
+    dir="${conf%%/*}"
+    path="${conf#*/}"
     create_symlink "$DIR_CONFS/$dir" "$path" "$DIR_CONF/$dir" "$path"
   done
 }
@@ -58,6 +57,6 @@ get_configs () {
   fi
 }
 
-# install_homebrew
-get_configs
+#install_homebrew
+#get_configs
 create_symlinks
