@@ -1,6 +1,6 @@
 #! /bin/zsh
 
-CONFS==("ghostty" "banana" "cherry")
+CONFS==("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf" "/zshrc")
 DIR_CONFS=$HOME/configs
 DIR_CONF=$HOME/.config
 PATH_ZSHRC=$HOME/.zshrc
@@ -39,10 +39,15 @@ create_symlink () {
 }
 
 create_symlinks () {
+for conf in "${CONFS[@]}"; do
+    echo "${conf%%/*}"
+    echo "${conf#*/}"
+done
   
 }
 
-install_homebrew
+#install_homebrew
+create_symklinks
 
 
 
