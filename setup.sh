@@ -1,6 +1,6 @@
 #! /bin/zsh
 
-CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf" "/zshrc")
+CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf" "zshrc")
 REPO_URL="git@github.com:wepasch/configs.git"
 DIR_CONFS=$HOME/configs
 DIR_CONF=$HOME/.config
