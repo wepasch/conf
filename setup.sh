@@ -7,13 +7,14 @@ PATH_ZSHRC=$HOME/.zshrc
 
 install_homebrew () {
   if ! command -v brew &> /dev/null; then
-    echo "Homebrew not found. Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  else
-    echo "Homebrew is already installed."
   fi
-  add_if_absent_into 'eval "$(/opt/homebrew/bin/brew shellenv)"'  $PATH_ZSHRC
-  source $PATH_ZSHRC
+  add_if_absent_into 'eval "$(/opt/homebrew/bin/brew shellenv)"' "$PATH_ZSHRC"
+  if [ -f "$PATH_ZSHRC" ]; then
+    source "$PATH_ZSHRC"
+  else
+    echo "ERROR: $PATH_ZSHRC not found, unable to source it."
+  fi
 }
 
 add_if_absent_into () {
@@ -28,43 +29,32 @@ add_if_absent_into () {
 }
 
 create_symlink () {
-  local src_path=$1/$2
-  local dst_dir=$3
-  local dst_path=$4
+  local src_path="$1/$2"
+  local dst_dir="$3"
+  local dst_path="$4"
   if [ ! -f "$src_path" ]; then
-    echo ERROR: no file at $src_path
+    echo "ERROR: No file at $src_path"
     return 1
   fi
   if [ ! -d "$dst_dir" ]; then
-    mkdir -p $dst_dir
+    mkdir -p "$dst_dir"
   fi
   if [ ! -f "$dst_path" ]; then
-    ln -s $src_path $dst_path
+    ln -s "$src_path" "$dst_path"
+    echo "Created symlink: $dst_path -> $src_path"
+  else
+    echo "Symlink already exists: $dst_path"
   fi
 }
 
 create_symlinks () {
-for conf in "${CONFS[@]}"; do
-  local dir="${conf%%/*}"
-  local path="${conf#*/}"
-  create_symlink $DIR_CONFS/$dir $path $DIR_CONF/$dir $path 
-done
-  
+  for conf in "${CONFS[@]}"; do
+    local dir="${conf%%/*}"
+    local path="${conf#*/}"
+    create_symlink "$DIR_CONFS/$dir" "$path" "$DIR_CONF/$dir" "$path"
+  done
 }
 
-#install_homebrew
+# install_homebrew
+
 create_symlinks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
