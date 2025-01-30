@@ -1,6 +1,6 @@
 #! /bin/zsh
 
-CONFS==("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf" "/zshrc")
+CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf" "/zshrc")
 DIR_CONFS=$HOME/configs
 DIR_CONF=$HOME/.config
 PATH_ZSHRC=$HOME/.zshrc
@@ -28,26 +28,30 @@ add_if_absent_into () {
 }
 
 create_symlink () {
-  local src_path = $DIR_CONFS/$1/$2
-  if [ -n $3 ]; then
-    local src_dir = $DIR_CONF/$3
-    local dst_path = $dst_dir/$4
-  else
-    local src_dir = $DIR_CONF/$1
-    local dst_path = $dst_dir/$2
-  fi  
+  local src_path = $1/$2
+  local dst_dir = $3
+  local dst_path = $4
+  if [ ! -f "$src_path" ]; then
+    echo ERROR: no file at $src_path
+    return 1
+  fi
+  if [ ! -d "$dst_dir" ]; then
+    mkdir -p $dst_dir
+  if
+  if [ ! -f "$dst_path" ]; then
+    ln -s $src_path $dst_path
+  fi
 }
 
 create_symlinks () {
 for conf in "${CONFS[@]}"; do
-    echo "${conf%%/*}"
-    echo "${conf#*/}"
+  create_symlink $DIR_CONFS/"${conf%%/*}" "${conf#*/}" $DIR_CONF/"${conf%%/*}" "${conf#*/}" 
 done
   
 }
 
 #install_homebrew
-create_symklinks
+create_symlinks
 
 
 
