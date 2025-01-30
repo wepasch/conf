@@ -17,8 +17,8 @@ install_homebrew () {
 }
 
 add_if_absent_into () {
-  local line = "$1"
-  local file = "$2"
+  local line="$1"
+  local file="$2"
   if ! grep -qF "$line" "$file"; then
     echo "Adding the following line into $file: $line"
     echo -e "\n$line" >> "$file"
@@ -28,16 +28,15 @@ add_if_absent_into () {
 }
 
 create_symlink () {
-  local src_path = $1/$2
-  local dst_dir = $3
-  local dst_path = $4
+  local src_path=$1/$2
+  local dst_dir=$3
+  local dst_path=$4
   if [ ! -f "$src_path" ]; then
     echo ERROR: no file at $src_path
     return 1
   fi
   if [ ! -d "$dst_dir" ]; then
     mkdir -p $dst_dir
-  if
   if [ ! -f "$dst_path" ]; then
     ln -s $src_path $dst_path
   fi
