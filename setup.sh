@@ -1,6 +1,6 @@
 #! /bin/zsh
 
-CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf" "zshrc")
+CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf" "/.zshrc")
 REPO_URL="git@github.com:wepasch/configs.git"
 DIR_CONFS=$HOME/configs
 DIR_CONF=$HOME/.config
@@ -43,9 +43,9 @@ create_symlink () {
 
 create_symlinks () {
   for conf in "${CONFS[@]}"; do
-    dir="${conf%%/*}"
-    path="${conf#*/}"
-    create_symlink "$DIR_CONFS/$dir" "$path" "$DIR_CONF/$dir" "$path"
+    _dir="${conf%%/*}"
+    _path="${conf#*/}"
+    create_symlink "$DIR_CONFS/$_dir" "$_path" "$DIR_CONF/$dir" "$_path"
   done
 }
 
@@ -57,6 +57,6 @@ get_configs () {
   fi
 }
 
-#install_homebrew
-#get_configs
+install_homebrew
+get_configs
 create_symlinks
