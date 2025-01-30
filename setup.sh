@@ -22,10 +22,7 @@ add_if_absent_into () {
   local line="$1"
   local file="$2"
   if ! grep -qF "$line" "$file"; then
-    echo "Adding the following line into $file: $line"
     echo -e "\n$line" >> "$file"
-  else
-    echo "Line already exists in $file."
   fi
 }
 
@@ -42,9 +39,6 @@ create_symlink () {
   fi
   if [ ! -f "$dst_path" ]; then
     ln -s "$src_path" "$dst_path"
-    echo "Created symlink: $dst_path -> $src_path"
-  else
-    echo "Symlink already exists: $dst_path"
   fi
 }
 
