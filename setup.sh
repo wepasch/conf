@@ -1,6 +1,7 @@
 #! /bin/zsh
 
 CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf" "/zshrc")
+REPO_URL="git@github.com:wepasch/configs.git"
 DIR_CONFS=$HOME/configs
 DIR_CONF=$HOME/.config
 PATH_ZSHRC=$HOME/.zshrc
@@ -55,6 +56,14 @@ create_symlinks () {
   done
 }
 
-# install_homebrew
+get_configs () {
+    if [ -d "$DIR_CONFS/.git" ]; then
+    git -C "$DIR_CONFS" pull origin main
+  else
+    git clone "$REPO_URL" "$DIR_CONFS"
+  fi
+}
 
+# install_homebrew
+get_configs
 create_symlinks
