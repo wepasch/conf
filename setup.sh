@@ -1,4 +1,5 @@
 #! /bin/zsh
+# 
 
 CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf")
 URL_REPO="git@github.com:wepasch/dotfiles.git"
@@ -8,24 +9,38 @@ DIR_CONF=$HOME/.config
 PATH_ZSHRC=$HOME/.zshrc
 DIR_TPM="$DIR_CONF/tmux/plugins/tpm"
 
+counter_opts=0
 opt_hb=false
 opt_hb_i=false
-while getopts "hi" opt; do
+opt_nvim=false
+while getopts "hin" opt; do
   case $opt in
     h)
       opt_hb=true
+      ((counter_opts++))
       ;;
     i)
       opt_hb_i=true
+      ((counter_opts++))
+      ;;
+    n)
+      opt_nvim=true
+      ((counter_opts++))
       ;;
     *)
-      echo "Usage: $0 [-h] [-i]"
+      echo "Usage: $0 [-h] [-i] [-n]"
       exit 1
       ;;
   esac
 done
 
+if [ "$counter_opts" -gt 1 ]; then
+  echo ERROR: Start $0 with none or one option.
+  exit 1
+fi
+
 install_homebrew () {
+  echo INFO: Install homebrew...
   if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
@@ -60,6 +75,7 @@ create_symlink () {
 }
 
 create_symlinks () {
+  echo INFO: Create symlinks...
   for conf in "${CONFS[@]}"; do
     _dir="${conf%%/*}"
     _path="${conf#*/}"
@@ -98,12 +114,18 @@ install_to () {
 
 install_brews () {
   path_bf="$DIR_DFILES/homebrew/brewfile"
+  echo INFO: Install from $path_bf.
   if [ ! -f "$path_bf" ];then
     echo ERROR: no brewfile at $path_bf
     exit 1
   fi
   brew bundle --file="$path_bf"
-} 
+}
+
+setup_nvim () {
+  echo INFO: Setup nvim...
+
+}
 
 if [ "$opt_hb" = true ];then
   install_homebrew
@@ -111,6 +133,10 @@ if [ "$opt_hb" = true ];then
 fi
 if [ "$opt_hb_i" = true ];then
   install_brews
+  exit 0
+fi
+if [ "$opt_nvim"=true ]; then
+  setup_nvim
   exit 0
 fi
 install_to $URL_REPO $DIR_DFILES
