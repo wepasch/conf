@@ -1,7 +1,7 @@
 #! /bin/zsh
 
 CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf")
-URL_REPO="git@github.com:wepasch/configs.git"
+URL_REPO="git@github.com:wepasch/dotfiles.git"
 URL_TPM="https://github.com/tmux-plugins/tpm"
 DIR_CONFS=$HOME/configs
 DIR_CONF=$HOME/.config
