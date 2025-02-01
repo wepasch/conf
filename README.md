@@ -10,7 +10,15 @@ curl -L -o ~/setup.sh "https://raw.githubusercontent.com/wepasch/configs/main/se
 ```zsh
 zsh ~/setip.sh
 ```
-3. Install with brewfile:
+3. Install homebrew:
+```zsh
+~/setup.sh -h
+```
+5. Install with brewfile:
+```zsh
+~/setup.sh -i
+```
+or via
 ```zsh
 brew bundle --file=~/.config/homebrew/brewfile
 ```
