@@ -8,7 +8,7 @@ curl -L -o ~/setup.sh "https://raw.githubusercontent.com/wepasch/configs/main/se
 - clone tpm repo
 - create symlinks for $HOME/.zshrc and other files in $HOME/.config
 ```zsh
-zsh ~/setip.sh
+zsh ~/setup.sh
 ```
 3. Install homebrew:
 ```zsh
