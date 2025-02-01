@@ -1,5 +1,4 @@
 #! /bin/zsh
-# 
 
 CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf")
 URL_REPO="git@github.com:wepasch/dotfiles.git"
