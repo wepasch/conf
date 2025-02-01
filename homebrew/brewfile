@@ -1,5 +1,7 @@
 cask 'font-meslo-lg-nerd-font'
 cask 'ghostty'
+cask "raycast"
+cask "caffeine"
 brew 'tmux'
 brew 'fzf'
 brew 'fd'
