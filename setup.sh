@@ -137,7 +137,7 @@ if [ "$opt_hb_i" = true ];then
   install_brews
   exit 0
 fi
-if [ "$opt_nvim"=true ]; then
+if [ "$opt_nvim" = true ]; then
   setup_nvim
   exit 0
 fi
