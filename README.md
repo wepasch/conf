@@ -25,6 +25,11 @@ or via
 brew bundle --file=~/.config/homebrew/brewfile
 ```
 6. Open tmux and press ctrl-a + I to install plugins.
+7. Setup nvim with:
+```zsh
+/setup.sh -n
+```
+
 
 
 
