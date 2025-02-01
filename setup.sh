@@ -125,6 +125,9 @@ install_brews () {
 
 setup_nvim () {
   echo INFO: Setup nvim...
+  if [ -d "$DST_NVIM" ]; then
+    rm -rf $DST_NVIM
+  fi
   cp -R "$SRC_NVIM" "$DST_NVIM"
 
 }
