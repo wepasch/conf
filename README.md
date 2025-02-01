@@ -14,7 +14,7 @@ zsh ~/setip.sh
 ```zsh
 ~/setup.sh -h
 ```
-5. Install with brewfile:
+4. Install with brewfile:
 ```zsh
 ~/setup.sh -i
 ```
