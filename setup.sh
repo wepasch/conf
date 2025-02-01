@@ -125,6 +125,7 @@ install_brews () {
 
 setup_nvim () {
   echo INFO: Setup nvim...
+  install_to $URL_REPO $DIR_DFILES
   if [ -d "$DST_NVIM" ]; then
     rm -rf $DST_NVIM
   fi
