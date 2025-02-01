@@ -29,6 +29,8 @@ brew bundle --file=~/.config/homebrew/brewfile
 ```zsh
 /setup.sh -n
 ```
+___
+Info: next setup nvim-tree
 
 
 
