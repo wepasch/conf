@@ -46,7 +46,7 @@ add_if_absent_into () {
 }
 
 create_symlink () {
-  src_path="$DIR_CONFS/$1/$2"
+  src_path="$DIR_DFILES/$1/$2"
   dst_dir="$DIR_CONF/$1"
   dst_path="$dst_dir/$2"
   if [ ! -f "$src_path" ]; then
@@ -65,7 +65,7 @@ create_symlinks () {
     _path="${conf#*/}"
     create_symlink "$_dir" "$_path"   
   done
-  src_zshrc="$DIR_CONFS/.zshrc"
+  src_zshrc="$DIR_DFILES/.zshrc"
   if [ -f "$src_zshrc" ]; then
     if [ ! -f "$PATH_ZSHRC" ]; then
       ln -s "$src_zshrc" "$PATH_ZSHRC"
@@ -78,10 +78,10 @@ create_symlinks () {
 }
 
 get_configs () {
-    if [ -d "$DIR_CONFS/.git" ]; then
-    git -C "$DIR_CONFS" pull origin main
+    if [ -d "$DIR_DFILES/.git" ]; then
+    git -C "$DIR_DFILES" pull origin main
   else
-    git clone "$REPO_URL" "$DIR_CONFS"
+    git clone "$REPO_URL" "$DIR_DFILES"
   fi
 }
 
@@ -97,7 +97,7 @@ install_to () {
 }
 
 install_brews () {
-  path_bf="$DIR_CONFS/homebrew/brewfile"
+  path_bf="$DIR_DFILES/homebrew/brewfile"
   if [ ! -f "$path_bf" ];then
     echo ERROR: no brewfile at $path_bf
     exit 1
@@ -113,6 +113,6 @@ if [ "$opt_hb_i" = true ];then
   install_brews
   exit 0
 fi
-install_to $URL_REPO $DIR_CONFS
+install_to $URL_REPO $DIR_DFILES
 install_to $URL_TPM $DIR_TPM 
 create_symlinks
