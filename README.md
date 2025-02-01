@@ -10,11 +10,13 @@ curl -L -o ~/setup.sh "https://raw.githubusercontent.com/wepasch/configs/main/se
 ```zsh
 zsh ~/setup.sh
 ```
+> warnings about missing homebrew directory etc. can be ignored 
 3. Install homebrew:
 ```zsh
 ~/setup.sh -h
 ```
-4. Install with brewfile:
+4. Open a new terminal.
+5. Install with brewfile:
 ```zsh
 ~/setup.sh -i
 ```
@@ -22,7 +24,7 @@ or via
 ```zsh
 brew bundle --file=~/.config/homebrew/brewfile
 ```
-5. Open tmux and press ctrl-a + I to install plugins.
+6. Open tmux and press ctrl-a + I to install plugins.
 
 
 
