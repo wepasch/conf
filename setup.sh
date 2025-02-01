@@ -4,10 +4,12 @@
 CONFS=("ghostty/config" "karabiner/karabiner.json" "tmux/tmux.conf")
 URL_REPO="git@github.com:wepasch/dotfiles.git"
 URL_TPM="https://github.com/tmux-plugins/tpm"
-DIR_CONFS=$HOME/configs
+DIR_DFILES=$HOME/dotfiles
 DIR_CONF=$HOME/.config
 PATH_ZSHRC=$HOME/.zshrc
 DIR_TPM="$DIR_CONF/tmux/plugins/tpm"
+SRC_NVIM="$DIR_DFILES/nvim"
+DST_NVIM="$DIR_CONF/nvim"
 
 counter_opts=0
 opt_hb=false
@@ -124,6 +126,7 @@ install_brews () {
 
 setup_nvim () {
   echo INFO: Setup nvim...
+  cp -R "$SRC_NVIM" "$DST_NVIM"
 
 }
 
