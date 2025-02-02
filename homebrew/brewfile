@@ -3,7 +3,6 @@ cask 'font-meslo-lg-nerd-font'
 cask 'ghostty'
 cask 'raycast'
 cask 'caffeine'
-cask 'gimp'
 
 brew 'nvim'
 brew 'tmux'
