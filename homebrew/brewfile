@@ -4,6 +4,7 @@ cask 'ghostty'
 cask 'raycast'
 cask 'caffeine'
 cask 'firefox'
+cask 'postman'
 
 brew 'nvim'
 brew 'tmux'
